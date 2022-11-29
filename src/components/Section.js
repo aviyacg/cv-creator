@@ -2,6 +2,14 @@ import { Component } from "react";
 import InputGroup from "./InputGroup";
 
 class Section extends Component {
+  constructor(props) {
+    super(props);
+    this.addInputList = this.addInputList.bind(this);
+  }
+  addInputList() {
+
+  }
+
   render() {
     return (
       <div className="Section">
@@ -9,6 +17,7 @@ class Section extends Component {
           {this.props.title}
         </div>
         <InputGroup inputList={this.props.inputList} />
+        <button onClick={this.addInputList}>Add</button>
       </div>
     );
   }
