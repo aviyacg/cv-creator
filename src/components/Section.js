@@ -33,18 +33,7 @@ class Section extends Component {
         <div className="title">
           {this.props.title}
         </div>
-        {
-          this.state.inputGroupKeys.map(
-            key => (<InputGroup
-              key={key}
-              id={key}
-              inputList={this.inputList}
-              deleteable={this.addable}
-              delete={this.deleteInputGroup}
-              onChange={this.props.onChange}
-            />)
-          )
-        }
+        {this.state.inputGroupKeys.map(key => <InputGroup key={key} id={key} inputList={this.inputList} deleteable={this.addable} delete={this.deleteInputGroup} />)}
         {this.addable ? <button onClick={this.addInputGroup}>Add</button> : undefined}
       </div>
     );
