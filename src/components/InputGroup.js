@@ -8,7 +8,7 @@ class InputGroup extends Component {
       return (<input key={index} type={type} placeholder={placeHolder} />);
     });
     return (
-      <div className="InputGroup">
+      <div key={this.props.key} className="InputGroup">
         {liList}
       </div>
     );

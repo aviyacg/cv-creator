@@ -28,8 +28,8 @@ class Form extends Component {
     return (
       <>
         <Section title="Personal Info" inputList={infoInputlist} />
-        <Section title="Experience" inputList={expInputList} />
-        <Section title="Education" inputList={eduInputList} />
+        <Section title="Experience" inputList={expInputList} addable={true} />
+        <Section title="Education" inputList={eduInputList} addable={true}/>
       </>
     );
   }

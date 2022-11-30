@@ -1,13 +1,18 @@
 import { Component } from "react";
+import { v4 as newId } from 'uuid';
 import InputGroup from "./InputGroup";
 
 class Section extends Component {
   constructor(props) {
     super(props);
-    this.addInputList = this.addInputList.bind(this);
+    this.inputList = props.inputList;
+    this.addable = props.addable ? true : false;
+    this.state = { inputGroupKeys: [newId()] };
+    this.addInputGroup = this.addInputGroup.bind(this);
   }
-  addInputList() {
 
+  addInputGroup() {
+    this.setState({ inputGroupKeys: this.state.inputGroupKeys.concat(newId()) });
   }
 
   render() {
@@ -16,8 +21,8 @@ class Section extends Component {
         <div className="title">
           {this.props.title}
         </div>
-        <InputGroup inputList={this.props.inputList} />
-        <button onClick={this.addInputList}>Add</button>
+        {this.state.inputGroupKeys.map(key => <InputGroup key={key} inputList={this.inputList} />)}
+        {this.addable ? <button onClick={this.addInputGroup}>Add</button> : undefined}
       </div>
     );
   }
