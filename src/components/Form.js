@@ -11,6 +11,8 @@ class Form extends Component {
     this.changePersonal = this.changePersonal.bind(this);
     this.changeExp = this.changeExp.bind(this);
     this.changeEdu = this.changeEdu.bind(this);
+    this.deleteExp = this.deleteExp.bind(this);
+    this.deleteEdu = this.deleteEdu.bind(this);
   }
 
   changePersonal({ groupId, name, value }) {
@@ -25,10 +27,22 @@ class Form extends Component {
     changeInfo({ sectionName, groupId, name, value });
   }
 
+  deleteExp({ groupId }) {
+    const { deleteGroup } = this.props;
+    const sectionName = 'experience';
+    deleteGroup({ sectionName, groupId });
+  }
+
   changeEdu({ groupId, name, value }) {
     const { changeInfo } = this.props;
     const sectionName = 'education';
     changeInfo({ sectionName, groupId, name, value });
+  }
+  
+  deleteEdu({ groupId }) {
+    const { deleteGroup } = this.props;
+    const sectionName = 'education';
+    deleteGroup({ sectionName, groupId });
   }
 
 
