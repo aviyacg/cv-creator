@@ -62,7 +62,7 @@ class Form extends Component {
       { placeHolder: "Until year", name: "untilYear", type: "number" },
     ];
     const eduInputList = [
-      { placeHolder: "Istitution", name: "institution" },
+      { placeHolder: "Institution", name: "institution" },
       { placeHolder: "City", name: "city" },
       { placeHolder: "Degree", name: "degree" },
       { placeHolder: "Subject", name: "subject" },
