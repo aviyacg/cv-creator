@@ -6,34 +6,44 @@ import "../styles/Form.css";
 
 class Form extends Component {
   render() {
-    const infoInputlist = [
-      { placeHolder: "First name" },
-      { placeHolder: "Last name" },
-      { placeHolder: "Title" },
-      { placeHolder: "Address" },
-      { placeHolder: "Phone number", type: "tel" },
-      { placeHolder: "Email", type: "email" },
+    const personalInputlist = [
+      { placeHolder: "First name", name: "firstName" },
+      { placeHolder: "Last name", name: "lastName" },
+      { placeHolder: "Address", name: "address" },
+      { placeHolder: "Phone number", name: "phoneNumber", type: "tel" },
+      { placeHolder: "Email", name: "email", type: "email" },
     ];
     const expInputList = [
-      { placeHolder: "Position" },
-      { placeHolder: "Company" },
-      { placeHolder: "City" },
-      { placeHolder: "From year", type: "number" },
-      { placeHolder: "Until year", type: "number" }
+      { placeHolder: "Position", name: "position" },
+      { placeHolder: "Company", name: "company" },
+      { placeHolder: "City", name: "city" },
+      { placeHolder: "From year", name: "fromYear", type: "number" },
+      { placeHolder: "Until year", name: "untilYear", type: "number" },
     ];
     const eduInputList = [
-      { placeHolder: "Istitution" },
-      { placeHolder: "City" },
-      { placeHolder: "Degree" },
-      { placeHolder: "Subject" },
-      { placeHolder: "From year", type: "number" },
-      { placeHolder: "Until year", type: "number" }
+      { placeHolder: "Istitution", name: "institution" },
+      { placeHolder: "City", name: "city" },
+      { placeHolder: "Degree", name: "degree" },
+      { placeHolder: "Subject", name: "subject" },
+      { placeHolder: "From year", name: "fromYear", type: "number" },
+      { placeHolder: "Until year", name: "untilYear", type: "number" }
     ];
     return (
       <div className="Form">
-        <Section title="Personal Info" inputList={infoInputlist} />
-        <Section title="Experience" inputList={expInputList} addable={true} />
-        <Section title="Education" inputList={eduInputList} addable={true}/>
+        <Section
+          title="Personal Info"
+          inputList={personalInputlist}
+        />
+        <Section
+          title="Experience"
+          inputList={expInputList}
+          addable={true}
+        />
+        <Section
+          title="Education"
+          inputList={eduInputList}
+          addable={true}
+        />
       </div>
     );
   }
