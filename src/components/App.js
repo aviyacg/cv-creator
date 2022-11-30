@@ -28,6 +28,9 @@ class App extends Component {
         },
       ],
     };
+
+    this.changeInfo = this.changeInfo.bind(this);
+    this.deleteGroup = this.deleteGroup.bind(this);
   }
 
   changeInfo({ sectionName, groupId, name, value }) {
@@ -68,7 +71,11 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Form />
+        <Form
+          state={this.state}
+          changeInfo={this.changeInfo}
+          deleteGroup={this.deleteGroup}
+        />
       </div>
     );
   }
