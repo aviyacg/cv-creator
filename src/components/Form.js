@@ -74,16 +74,21 @@ class Form extends Component {
         <Section
           title="Personal Info"
           inputList={personalInputlist}
+          changeInfo={this.changePersonal}
         />
         <Section
           title="Experience"
           inputList={expInputList}
           addable={true}
+          changeInfo={this.changeExp}
+          deleteGroup={this.deleteExp}
         />
         <Section
           title="Education"
           inputList={eduInputList}
           addable={true}
+          changeInfo={this.changeEdu}
+          deleteGroup={this.deleteEdu}
         />
       </div>
     );
