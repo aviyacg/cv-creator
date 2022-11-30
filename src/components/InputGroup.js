@@ -14,13 +14,20 @@ class InputGroup extends Component {
   }
   
   render() {
-    const { inputList } = this.props;
+    const { inputList, onChange } = this.props;
     const liList = inputList.map((input, index) => {
-      const { placeHolder, type } = input;
-      return (<input key={index} type={type} placeholder={placeHolder} />);
+      const { placeHolder, type, name } = input;
+      return (<input
+        key={index}
+        type={type}
+        placeholder={placeHolder}
+        name={name}
+        onChange={onChange}
+        data-groupid={this.props.id}
+      />);
     });
     return (
-      <div key={this.props.key} className="InputGroup">
+      <div key={this.props.id} className="InputGroup">
         {liList}
         {this.props.deleteable ? <button onClick={this.delete}>Delete</button> : undefined}
       </div>
