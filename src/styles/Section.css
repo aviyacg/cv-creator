@@ -1,0 +1,22 @@
+.Section{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title{
+  color: hsl(240, 100%, 10%);
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-bottom: 1px solid hsl(240, 100%, 10%);
+}
+
+button{
+  color: hsl(0, 0%, 90%);
+  font-size: 1.1rem;
+  
+  cursor: pointer;
+  background-color: hsl(240, 100%, 10%);
+  border-radius: 4px;
+  padding: 4px;
+}

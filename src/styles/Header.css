@@ -1,6 +1,6 @@
 .Header{
-  background-color: navy;
-  color: whitesmoke;
+  background-color: hsl(240, 100%, 25%);
+  color: hsl(0, 0%, 96%);
   font-size: 3rem;
   font-weight: bold;
   padding: 8px;

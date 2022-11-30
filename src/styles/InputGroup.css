@@ -1,0 +1,13 @@
+
+.InputGroup{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+input{
+  border: none;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  padding: 4px;
+}

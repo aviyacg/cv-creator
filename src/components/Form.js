@@ -1,5 +1,9 @@
 import { Component } from "react";
 import Section from "./Section";
+
+import "../styles/Form.css";
+
+
 class Form extends Component {
   render() {
     const infoInputlist = [
@@ -26,11 +30,11 @@ class Form extends Component {
       { placeHolder: "Until year", type: "number" }
     ];
     return (
-      <>
+      <div className="Form">
         <Section title="Personal Info" inputList={infoInputlist} />
         <Section title="Experience" inputList={expInputList} addable={true} />
         <Section title="Education" inputList={eduInputList} addable={true}/>
-      </>
+      </div>
     );
   }
 }
