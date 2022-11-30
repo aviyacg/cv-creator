@@ -33,6 +33,7 @@ class App extends Component {
   changeInfo({ sectionName, groupId, name, value }) {
     // get section
     const section = this.state[sectionName];
+    if (section === undefined) return;
     // get group
     const group = section.find(group => group.id === groupId);
     if (group === undefined) {
@@ -46,8 +47,21 @@ class App extends Component {
       // update if group exist
       group.info[name] = value;
     }
-    // update section 
-    this.setState({[sectionName]: section})
+    // update state 
+    this.setState({ [sectionName]: section });
+  }
+
+  deleteGroup({ sectionName, groupId }) {
+    // get section
+    const section = this.state[sectionName];
+    if (section === undefined) return;
+    // get group
+    const groupIndex = section.findIndex(group => group.id === groupId);
+    if (groupIndex === -1) return;
+    // delete group
+    section.splice(groupIndex, 1);
+    // update state
+    this.setState({ [sectionName]: section });
   }
 
   render() {
