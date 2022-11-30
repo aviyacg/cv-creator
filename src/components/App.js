@@ -30,8 +30,24 @@ class App extends Component {
     };
   }
 
-  changeInfo() {
-
+  changeInfo({ sectionName, groupId, name, value }) {
+    // get section
+    const section = this.state[sectionName];
+    // get group
+    const group = section.find(group => group.id === groupId);
+    if (group === undefined) {
+      // create group if doesnt exist
+      section.push({
+        id: groupId,
+        info: {[name]: value},
+      });
+    }
+    else {
+      // update if group exist
+      group.info[name] = value;
+    }
+    // update section 
+    this.setState({[sectionName]: section})
   }
 
   render() {
