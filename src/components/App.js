@@ -1,14 +1,17 @@
 import '../styles/App.css';
 import Header from './Header';
 import Form from './Form';
+import { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Form />
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <Form />
+      </div>
+    );
+  }
 }
 
 export default App;
