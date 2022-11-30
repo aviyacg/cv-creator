@@ -5,6 +5,33 @@ import "../styles/Form.css";
 
 
 class Form extends Component {
+  constructor(props) {
+    super(props);
+
+    this.changePersonal = this.changePersonal.bind(this);
+    this.changeExp = this.changeExp.bind(this);
+    this.changeEdu = this.changeEdu.bind(this);
+  }
+
+  changePersonal({ groupId, name, value }) {
+    const { changeInfo } = this.props;
+    const sectionName = 'personal';
+    changeInfo({ sectionName, groupId, name, value });
+  }
+
+  changeExp({ groupId, name, value }) {
+    const { changeInfo } = this.props;
+    const sectionName = 'experience';
+    changeInfo({ sectionName, groupId, name, value });
+  }
+
+  changeEdu({ groupId, name, value }) {
+    const { changeInfo } = this.props;
+    const sectionName = 'education';
+    changeInfo({ sectionName, groupId, name, value });
+  }
+
+
   render() {
     const personalInputlist = [
       { placeHolder: "First name", name: "firstName" },
