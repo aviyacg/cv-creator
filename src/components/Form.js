@@ -8,6 +8,8 @@ class Form extends Component {
   constructor(props) {
     super(props);
 
+    this.addExp = this.addExp.bind(this);
+    this.addEdu = this.addEdu.bind(this);
     this.changePersonal = this.changePersonal.bind(this);
     this.changeExp = this.changeExp.bind(this);
     this.changeEdu = this.changeEdu.bind(this);
@@ -21,6 +23,12 @@ class Form extends Component {
     changeInfo({ sectionName, groupId, name, value });
   }
 
+  addExp({ groupId }) {
+    const { addGroup } = this.props;
+    const sectionName = 'experience';
+    addGroup(sectionName, groupId);
+  }
+
   changeExp({ groupId, name, value }) {
     const { changeInfo } = this.props;
     const sectionName = 'experience';
@@ -31,6 +39,12 @@ class Form extends Component {
     const { deleteGroup } = this.props;
     const sectionName = 'experience';
     deleteGroup({ sectionName, groupId });
+  }
+
+  addEdu({ groupId }) {
+    const { addGroup } = this.props;
+    const sectionName = 'education';
+    addGroup(sectionName, groupId);
   }
 
   changeEdu({ groupId, name, value }) {
@@ -80,6 +94,7 @@ class Form extends Component {
           title="Experience"
           inputList={expInputList}
           addable={true}
+          addGroup={this.addExp}
           changeInfo={this.changeExp}
           deleteGroup={this.deleteExp}
         />
@@ -87,6 +102,7 @@ class Form extends Component {
           title="Education"
           inputList={eduInputList}
           addable={true}
+          addGroup={this.addEdu}
           changeInfo={this.changeEdu}
           deleteGroup={this.deleteEdu}
         />
