@@ -85,13 +85,13 @@ class Form extends Component {
       { placeHolder: "Until year", name: "untilYear", type: "number" }
     ];
     // sectionStates for rendering input groups values
-    const { presonal, experience, education } = this.props.state;
+    const { personal, experience, education } = this.props.state;
     return (
       <div className="Form">
         <Section
           title="Personal Info"
           inputList={personalInputlist}
-          sectionState={presonal}
+          sectionState={personal}
           changeInfo={this.changePersonal}
         />
         <Section
