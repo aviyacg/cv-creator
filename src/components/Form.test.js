@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Form from './Form';
+import App from './App';
 
 test('renders Three sections titles', () => {
-  render(<Form />);
+  render(<App />);
   const title = screen.getByText('Personal Info');
   expect(title).not.toBeUndefined();
 
@@ -15,19 +15,19 @@ test('renders Three sections titles', () => {
 });
 
 test('renders two add buttons', () => { 
-  render(<Form />);
+  render(<App />);
   const addButtons = screen.getAllByText('Add');
   expect(addButtons).toHaveLength(2);
 });
 
 test('renders two delete buttons', () => { 
-  render(<Form />);
+  render(<App />);
   const deleteButtons = screen.getAllByText('Delete');
   expect(deleteButtons).toHaveLength(2);
 });
 
 test('renders one experience inputGroup', () => { 
-  render(<Form />);
+  render(<App />);
   const positionInputs = screen.getAllByPlaceholderText('Position');
   expect(positionInputs).toHaveLength(1);
 
@@ -36,7 +36,7 @@ test('renders one experience inputGroup', () => {
 });
 
 test('renders one education inputGroup', () => { 
-  render(<Form />);
+  render(<App />);
   const institutionInputs = screen.getAllByPlaceholderText('Institution');
   expect(institutionInputs).toHaveLength(1);
 
@@ -45,7 +45,7 @@ test('renders one education inputGroup', () => {
 });
 
 test('add button add experience inputGroup', () => {
-  render(<Form />);
+  render(<App />);
   const positionInputs1 = screen.getAllByPlaceholderText('Position');
   expect(positionInputs1).toHaveLength(1);
 
@@ -57,7 +57,7 @@ test('add button add experience inputGroup', () => {
 });
 
 test('add button add education inputGroup', () => {
-  render(<Form />);
+  render(<App />);
   const institutionInputs1 = screen.getAllByPlaceholderText('Institution');
   expect(institutionInputs1).toHaveLength(1);
 
@@ -69,7 +69,7 @@ test('add button add education inputGroup', () => {
 });
 
 test('delete button delete experience inputGroup', () => {
-  render(<Form />);
+  render(<App />);
   const positionInputs1 = screen.getAllByPlaceholderText('Position');
   expect(positionInputs1).toHaveLength(1);
 
@@ -81,7 +81,7 @@ test('delete button delete experience inputGroup', () => {
 });
 
 test('delete button delete education inputGroup', () => {
-  render(<Form />);
+  render(<App />);
   const institutionInputs1 = screen.getAllByPlaceholderText('Institution');
   expect(institutionInputs1).toHaveLength(1);
 
