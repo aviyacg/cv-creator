@@ -29,8 +29,24 @@ class App extends Component {
       ],
     };
 
+    this.addGroup = this.addGroup.bind(this);
     this.changeInfo = this.changeInfo.bind(this);
     this.deleteGroup = this.deleteGroup.bind(this);
+  }
+
+  addGroup({ sectionName, groupId }) {
+    // get section
+    const section = this.state[sectionName];
+    if (section === undefined) return;
+    // look for group
+    const group = section.find(group => group.id === groupId);
+    if (group === undefined) {
+      // create group if doesnt exist
+      section.push({
+        id: groupId,
+        info: {},
+      });
+    }
   }
 
   changeInfo({ sectionName, groupId, name, value }) {
@@ -73,6 +89,7 @@ class App extends Component {
         <Header />
         <Form
           state={this.state}
+          addGroup={this.addGroup}
           changeInfo={this.changeInfo}
           deleteGroup={this.deleteGroup}
         />
