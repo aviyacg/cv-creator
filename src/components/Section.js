@@ -7,34 +7,34 @@ import "../styles/Section.css";
 class Section extends Component {
   constructor(props) {
     super(props);
-    this.inputList = props.inputList;
     this.addable = props.addable ? true : false;
-    this.state = { inputGroupKeys: [newId()] };
-    this.addInputGroup = this.addInputGroup.bind(this);
-    this.deleteInputGroup = this.deleteInputGroup.bind(this);
-  }
-
-  addInputGroup() {
-    const keys = this.state.inputGroupKeys;
-    keys.push(newId())
-    this.setState({ inputGroupKeys: keys });
-  }
-
-  deleteInputGroup(id) {
-    const keys = this.state.inputGroupKeys;
-    const index = keys.findIndex(key => key === id);
-    keys.splice(index, 1);
-    this.setState({ inputGroupKeys: keys });
   }
 
   render() {
+    const { title, inputList, sectionState, addGroup, changeInfo, deleteGroup } = this.props;
     return (
       <div className="Section">
         <div className="title">
-          {this.props.title}
+          {title}
         </div>
-        {this.state.inputGroupKeys.map(key => <InputGroup key={key} id={key} inputList={this.inputList} deleteable={this.addable} delete={this.deleteInputGroup} />)}
-        {this.addable ? <button onClick={this.addInputGroup}>Add</button> : undefined}
+        {
+          sectionState.map(group => (
+            <InputGroup
+              key={group.id}
+              id={group.id}
+              inputList={inputList}
+              changeInfo={changeInfo}
+              deleteable={this.addable}
+              deleteGroup={deleteGroup}
+            />)
+        )}
+        {
+          this.addable ?
+            <button onClick={() => { addGroup(newId()) }}>
+              Add
+            </button> :
+            undefined
+        }
       </div>
     );
   }
