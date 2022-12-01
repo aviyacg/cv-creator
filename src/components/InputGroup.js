@@ -10,7 +10,8 @@ class InputGroup extends Component {
 
 
   delete() {
-    this.props.delete(this.props.id);
+    const { deleteGroup, id } = this.props;
+    deleteGroup({groupId: id});
   }
   
   render() {
@@ -19,17 +20,23 @@ class InputGroup extends Component {
       const { placeHolder, type, name } = input;
       return (<input
         key={index}
+        id={this.props.id}
         type={type}
         placeholder={placeHolder}
         name={name}
         onChange={onChange}
-        data-groupid={this.props.id}
       />);
     });
     return (
       <div key={this.props.id} className="InputGroup">
         {liList}
-        {this.props.deleteable ? <button onClick={this.delete}>Delete</button> : undefined}
+        {
+          this.props.deleteable ?
+            <button onClick={this.delete}>
+              Delete
+              </button>
+            : undefined
+        }
       </div>
     );
   }
