@@ -1,0 +1,19 @@
+.App{
+  display: grid;
+  grid-template: 100px auto / minmax(600px ,auto) minmax(600px ,auto);
+  gap: 16px;
+}
+
+.Header{
+  grid-column: 1 / -1;
+}
+
+.Form{
+  min-width: 600px;
+  justify-self: center;
+}
+
+.Preview{
+  min-width: 600px;
+  justify-self: center;
+}

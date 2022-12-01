@@ -1,0 +1,20 @@
+
+.Main{
+  background-color: hsl(0, 0%, 95%);
+}
+
+.exp-info,
+.edu-info{
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 2fr;
+
+  padding: 4px;
+}
+
+.sub-title{
+  font-weight: bold;
+}
+
+.text{
+  grid-column: -2 / -1;
+}

@@ -3,6 +3,8 @@ import Description from "./Description";
 import Experience from "./Experience";
 import Education from "./Education";
 
+import '../../styles/Main.css';
+
 class Main extends Component {
   render() {
     const { description, experience, education } = this.props;

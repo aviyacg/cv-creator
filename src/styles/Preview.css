@@ -1,0 +1,18 @@
+.Preview{
+  display: grid;
+  grid-template: 100px auto / auto 200px;
+
+  background-color: hsl(0, 0%, 90%);
+  align-self: flex-start;
+  min-height: 800px;
+
+  color: hsl(240, 100%, 10%);
+}
+
+.Preview > .Header{
+  grid-column: 1/-1;
+}
+
+.Preview > div{
+  padding: 8px;
+}

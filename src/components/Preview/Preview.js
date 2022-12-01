@@ -2,6 +2,8 @@ import { Component } from "react";
 import Main from "./Main";
 import Details from "./Details";
 
+import '../../styles/Preview.css';
+
 class Preview extends Component {
   render() {
     const { personal, experience, education } = this.props.state;
