@@ -15,16 +15,19 @@ class InputGroup extends Component {
   }
   
   render() {
-    const { inputList, onChange } = this.props;
+    const { id, inputList, changeInfo } = this.props;
     const liList = inputList.map((input, index) => {
       const { placeHolder, type, name } = input;
       return (<input
         key={index}
-        id={this.props.id}
+        id={id}
         type={type}
         placeholder={placeHolder}
         name={name}
-        onChange={onChange}
+        onChange={(e) => {
+          const { id, name, value } = e.target;
+          changeInfo({ groupId: id, name, value });
+        }}
       />);
     });
     return (

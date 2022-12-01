@@ -32,7 +32,6 @@ class Section extends Component {
           this.addable ?
             <button onClick={() => {
               const groupId = newId();
-              console.log('onClick', { groupId });
               addGroup({groupId});
             }}>
               Add
