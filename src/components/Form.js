@@ -26,7 +26,7 @@ class Form extends Component {
   addExp({ groupId }) {
     const { addGroup } = this.props;
     const sectionName = 'experience';
-    addGroup(sectionName, groupId);
+    addGroup({sectionName, groupId});
   }
 
   changeExp({ groupId, name, value }) {
@@ -44,7 +44,7 @@ class Form extends Component {
   addEdu({ groupId }) {
     const { addGroup } = this.props;
     const sectionName = 'education';
-    addGroup(sectionName, groupId);
+    addGroup({sectionName, groupId});
   }
 
   changeEdu({ groupId, name, value }) {

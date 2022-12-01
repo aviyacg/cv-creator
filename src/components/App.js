@@ -47,6 +47,7 @@ class App extends Component {
         info: {},
       });
     }
+    this.setState({ [sectionName]: section });
   }
 
   changeInfo({ sectionName, groupId, name, value }) {

@@ -30,7 +30,11 @@ class Section extends Component {
         )}
         {
           this.addable ?
-            <button onClick={() => { addGroup(newId()) }}>
+            <button onClick={() => {
+              const groupId = newId();
+              console.log('onClick', { groupId });
+              addGroup({groupId});
+            }}>
               Add
             </button> :
             undefined
