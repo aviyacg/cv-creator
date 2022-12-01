@@ -2,7 +2,7 @@ import { Component } from "react";
 import { v4 as newId } from 'uuid';
 import InputGroup from "./InputGroup";
 
-import "../styles/Section.css";
+import "../../styles/Section.css";
 
 class Section extends Component {
   constructor(props) {

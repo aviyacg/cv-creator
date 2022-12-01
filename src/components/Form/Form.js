@@ -1,7 +1,7 @@
 import { Component } from "react";
 import Section from "./Section";
 
-import "../styles/Form.css";
+import "../../styles/Form.css";
 
 
 class Form extends Component {

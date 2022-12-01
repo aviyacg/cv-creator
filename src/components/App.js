@@ -1,6 +1,6 @@
 import '../styles/App.css';
 import Header from './Header';
-import Form from './Form';
+import Form from './Form/Form';
 import { Component } from 'react';
 import { v4 as newId } from 'uuid';
 
