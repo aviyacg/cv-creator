@@ -1,6 +1,7 @@
 import '../styles/App.css';
 import Header from './Header';
 import Form from './Form/Form';
+import Preview from './Preview/Preview';
 import { Component } from 'react';
 import { v4 as newId } from 'uuid';
 
@@ -93,6 +94,9 @@ class App extends Component {
           addGroup={this.addGroup}
           changeInfo={this.changeInfo}
           deleteGroup={this.deleteGroup}
+        />
+        <Preview
+          state={this.state}
         />
       </div>
     );
