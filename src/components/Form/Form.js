@@ -8,6 +8,31 @@ class Form extends Component {
   constructor(props) {
     super(props);
 
+    // input lists for rendering each section input groups
+    this.personalInputlist = [
+      { placeHolder: "First name", name: "firstName" },
+      { placeHolder: "Last name", name: "lastName" },
+      { placeHolder: "Address", name: "address" },
+      { placeHolder: "Phone number", name: "phoneNumber", type: "tel" },
+      { placeHolder: "Email", name: "email", type: "email" },
+    ];
+    this.expInputList = [
+      { placeHolder: "Position", name: "position" },
+      { placeHolder: "Company", name: "company" },
+      { placeHolder: "City", name: "city" },
+      { placeHolder: "From year", name: "fromYear", type: "number" },
+      { placeHolder: "Until year", name: "untilYear", type: "number" },
+    ];
+    this.eduInputList = [
+      { placeHolder: "Institution", name: "institution" },
+      { placeHolder: "City", name: "city" },
+      { placeHolder: "Degree", name: "degree" },
+      { placeHolder: "Subject", name: "subject" },
+      { placeHolder: "From year", name: "fromYear", type: "number" },
+      { placeHolder: "Until year", name: "untilYear", type: "number" }
+    ];
+
+    // methods binding
     this.addExp = this.addExp.bind(this);
     this.addEdu = this.addEdu.bind(this);
     this.changePersonal = this.changePersonal.bind(this);
@@ -15,6 +40,13 @@ class Form extends Component {
     this.changeEdu = this.changeEdu.bind(this);
     this.deleteExp = this.deleteExp.bind(this);
     this.deleteEdu = this.deleteEdu.bind(this);
+    
+    // add empty group for each section at App state
+    const { addGroup } = props;
+    const personalInputNames = this.personalInputlist.map(input => input.name);
+    addGroup({ sectionName: 'personal', inputNames: personalInputNames, groupId: '123' });
+    this.addExp({ groupId: '456' });
+    this.addEdu({ groupId: '789' });
   }
 
   changePersonal({ groupId, name, value }) {
@@ -26,7 +58,8 @@ class Form extends Component {
   addExp({ groupId }) {
     const { addGroup } = this.props;
     const sectionName = 'experience';
-    addGroup({sectionName, groupId});
+    const inputNames = this.expInputList.map(input => input.name);
+    addGroup({ sectionName, inputNames, groupId });
   }
 
   changeExp({ groupId, name, value }) {
@@ -44,7 +77,8 @@ class Form extends Component {
   addEdu({ groupId }) {
     const { addGroup } = this.props;
     const sectionName = 'education';
-    addGroup({sectionName, groupId});
+    const inputNames = this.eduInputList.map(input => input.name);
+    addGroup({sectionName, inputNames, groupId});
   }
 
   changeEdu({ groupId, name, value }) {
@@ -61,42 +95,19 @@ class Form extends Component {
 
 
   render() {
-    // input lists for rendering each section input groups
-    const personalInputlist = [
-      { placeHolder: "First name", name: "firstName" },
-      { placeHolder: "Last name", name: "lastName" },
-      { placeHolder: "Address", name: "address" },
-      { placeHolder: "Phone number", name: "phoneNumber", type: "tel" },
-      { placeHolder: "Email", name: "email", type: "email" },
-    ];
-    const expInputList = [
-      { placeHolder: "Position", name: "position" },
-      { placeHolder: "Company", name: "company" },
-      { placeHolder: "City", name: "city" },
-      { placeHolder: "From year", name: "fromYear", type: "number" },
-      { placeHolder: "Until year", name: "untilYear", type: "number" },
-    ];
-    const eduInputList = [
-      { placeHolder: "Institution", name: "institution" },
-      { placeHolder: "City", name: "city" },
-      { placeHolder: "Degree", name: "degree" },
-      { placeHolder: "Subject", name: "subject" },
-      { placeHolder: "From year", name: "fromYear", type: "number" },
-      { placeHolder: "Until year", name: "untilYear", type: "number" }
-    ];
     // sectionStates for rendering input groups values
     const { personal, experience, education } = this.props.state;
     return (
       <div className="Form">
         <Section
           title="Personal Info"
-          inputList={personalInputlist}
+          inputList={this.personalInputlist}
           sectionState={personal}
           changeInfo={this.changePersonal}
         />
         <Section
           title="Experience"
-          inputList={expInputList}
+          inputList={this.expInputList}
           sectionState={experience}
           addable={true}
           addGroup={this.addExp}
@@ -105,7 +116,7 @@ class Form extends Component {
         />
         <Section
           title="Education"
-          inputList={eduInputList}
+          inputList={this.eduInputList}
           sectionState={education}
           addable={true}
           addGroup={this.addEdu}

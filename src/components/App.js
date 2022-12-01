@@ -3,31 +3,15 @@ import Header from './Header';
 import Form from './Form/Form';
 import Preview from './Preview/Preview';
 import { Component } from 'react';
-import { v4 as newId } from 'uuid';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      personal: [
-        {
-          id: newId(),
-          info: {},
-        },
-      ],
-      experience: [
-        {
-          id: newId(),
-          info: {},
-        },
-      ],
-      education: [
-        {
-          id: newId(),
-          info: {},
-        },
-      ],
+      personal: [],
+      experience: [],
+      education: [],
     };
 
     this.addGroup = this.addGroup.bind(this);
@@ -35,7 +19,7 @@ class App extends Component {
     this.deleteGroup = this.deleteGroup.bind(this);
   }
 
-  addGroup({ sectionName, groupId }) {
+  addGroup({ sectionName, inputNames, groupId }) {
     // get section
     const section = this.state[sectionName];
     if (section === undefined) return;
@@ -43,9 +27,11 @@ class App extends Component {
     const group = section.find(group => group.id === groupId);
     if (group === undefined) {
       // create group if doesnt exist
+      const newInfo = {};
+      inputNames.forEach(name => newInfo[name] = '');
       section.push({
         id: groupId,
-        info: {},
+        info: newInfo,
       });
     }
     this.setState({ [sectionName]: section });

@@ -4,13 +4,13 @@ import App from './App';
 
 test('renders Three sections titles', () => {
   render(<App />);
-  const title = screen.getByText('Personal Info');
+  const title = screen.queryAllByText('Personal Info');
   expect(title).not.toBeUndefined();
 
-  const expTitle = screen.getByText('Experience');
+  const expTitle = screen.queryAllByText('Experience');
   expect(expTitle).not.toBeUndefined();
 
-  const eduTitle = screen.getByText('Education');
+  const eduTitle = screen.queryAllByText('Education');
   expect(eduTitle).not.toBeUndefined();
 });
 
