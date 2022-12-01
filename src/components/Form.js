@@ -61,6 +61,7 @@ class Form extends Component {
 
 
   render() {
+    // input lists for rendering each section input groups
     const personalInputlist = [
       { placeHolder: "First name", name: "firstName" },
       { placeHolder: "Last name", name: "lastName" },
@@ -83,16 +84,20 @@ class Form extends Component {
       { placeHolder: "From year", name: "fromYear", type: "number" },
       { placeHolder: "Until year", name: "untilYear", type: "number" }
     ];
+    // sectionStates for rendering input groups values
+    const { presonal, experience, education } = this.props.state;
     return (
       <div className="Form">
         <Section
           title="Personal Info"
           inputList={personalInputlist}
+          sectionState={presonal}
           changeInfo={this.changePersonal}
         />
         <Section
           title="Experience"
           inputList={expInputList}
+          sectionState={experience}
           addable={true}
           addGroup={this.addExp}
           changeInfo={this.changeExp}
@@ -101,6 +106,7 @@ class Form extends Component {
         <Section
           title="Education"
           inputList={eduInputList}
+          sectionState={education}
           addable={true}
           addGroup={this.addEdu}
           changeInfo={this.changeEdu}
