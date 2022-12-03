@@ -8,6 +8,7 @@ class Section extends Component {
   constructor(props) {
     super(props);
     this.addable = props.addable ? true : false;
+    this.descriptable = props.descriptable ? true : false;
   }
 
   render() {
@@ -24,6 +25,7 @@ class Section extends Component {
               id={group.id}
               inputList={inputList}
               changeInfo={changeInfo}
+              descriptable={this.descriptable}
               deleteable={this.addable}
               deleteGroup={deleteGroup}
             />)

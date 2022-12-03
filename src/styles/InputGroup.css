@@ -5,9 +5,13 @@
   gap: 8px;
 }
 
-input{
+input,
+textarea{
   border: none;
   font-size: 1.1rem;
   border-radius: 4px;
   padding: 4px;
+
+  resize:vertical;
+  font-family:inherit;
 }

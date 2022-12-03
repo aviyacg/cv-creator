@@ -17,4 +17,6 @@
 
 .text{
   grid-column: -2 / -1;
+  overflow-wrap: break-word;
+  white-space: initial;
 }

@@ -34,6 +34,18 @@ class InputGroup extends Component {
       <div key={this.props.id} className="InputGroup">
         {liList}
         {
+          this.props.descriptable ?
+            <textarea
+              name="description"
+              placeholder="Description"
+              id={id}
+              onInput={(e) => {
+                const { id, name, value } = e.target;
+                changeInfo({ groupId: id, name, value });
+              }}></textarea>
+            : undefined
+        }
+        {
           this.props.deleteable ?
             <button onClick={this.delete}>
               Delete

@@ -1,10 +1,11 @@
 .Preview{
   display: grid;
-  grid-template: 100px auto / auto 200px;
+  grid-template: 100px auto / 2fr 1fr;
 
   background-color: hsl(0, 0%, 90%);
   align-self: flex-start;
   min-height: 800px;
+  max-width: 600px;
 
   color: hsl(240, 100%, 10%);
 }
