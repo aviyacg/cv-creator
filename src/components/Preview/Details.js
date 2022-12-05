@@ -7,6 +7,7 @@ class Details extends Component {
 
     return (
       <div className="Detailes">
+        <img src="images/avatar.png" alt="profile"/>
         <div className="title">Contact Detailes</div>
         <div className="sub-title">Address</div>
         <div className="text">{address}</div>

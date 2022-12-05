@@ -17,3 +17,7 @@
 .Preview > div{
   padding: 8px;
 }
+
+.Preview img{
+  width: 200px;
+}
