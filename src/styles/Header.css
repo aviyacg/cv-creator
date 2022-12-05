@@ -1,7 +1,13 @@
 .Header{
-  background-color: hsl(240, 100%, 25%);
-  color: hsl(0, 0%, 96%);
+  background-color: hsl(240, 100%, 10%);
+  color: hsl(0, 0%, 90%);
   font-size: 3rem;
   font-weight: bold;
   padding: 8px;
+}
+
+.App > .Header{
+  height: max-content;
+  font-size: 4rem;
+  text-align: center;
 }

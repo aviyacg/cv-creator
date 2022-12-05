@@ -1,13 +1,15 @@
 .Preview{
   display: grid;
-  grid-template: 100px auto / 2fr 1fr;
+  grid-template: 80px auto / 2fr 1fr;
 
-  background-color: hsl(0, 0%, 90%);
+  background-color: hsl(0, 0%, 85%);
   align-self: flex-start;
   min-height: 800px;
   max-width: 600px;
 
   color: hsl(240, 100%, 10%);
+
+  box-shadow: 0px 0px 12px 0px hsl(0, 0%, 50%);
 }
 
 .Preview > .Header{
