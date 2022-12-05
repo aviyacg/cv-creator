@@ -25,20 +25,49 @@ class InputGroup extends Component {
         placeholder={placeHolder}
         name={name}
         onChange={(e) => {
-          const { id, name, value } = e.target;
-          changeInfo({ groupId: id, name, value });
-        }}
+                  const { id, name, value } = e.target;
+                  changeInfo({ groupId: id, name, value });
+                }}
       />);
     });
     return (
       <div key={this.props.id} className="InputGroup">
         {liList}
         {
+          // add image input if image is true
+          this.props.image ?
+            <label>
+              <input
+                id={id}
+                type="file"
+                name="image"
+                onChange={(e) => {
+                  const { id, name } = e.target;
+                  const file = e.target.files[0];
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                    console.log({ resurt: reader.result });
+                    changeInfo({ groupId: id, name, value: reader.result })
+                  };
+                  if (file) {
+                    console.log({ file });
+                    reader.readAsDataURL(file);
+                  } else {
+                    changeInfo({ groupId: id, name, value: "" });
+                  }
+                }}
+              />
+              Choose Image
+            </label>
+            : undefined
+        }
+        {
+          // add textarea for description if descriptable is true
           this.props.descriptable ?
             <textarea
+              id={id}
               name="description"
               placeholder="Description"
-              id={id}
               onInput={(e) => {
                 const { id, name, value } = e.target;
                 changeInfo({ groupId: id, name, value });

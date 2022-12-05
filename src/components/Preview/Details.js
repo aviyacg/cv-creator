@@ -3,11 +3,12 @@ import { Component } from "react";
 class Details extends Component {
   render() {
     const info = this.props.personal[0].info;
-    const { address, phoneNumber, email } = info;
-
+    const { address, phoneNumber, email, image } = info;
+    console.log({ image });
+    let src = image === "" ? "images/avatar.png" : image;
     return (
       <div className="Detailes">
-        <img src="images/avatar.png" alt="profile"/>
+        <img src={src} alt="profile"/>
         <div className="title">Contact Detailes</div>
         <div className="sub-title">Address</div>
         <div className="text">{address}</div>

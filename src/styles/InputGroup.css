@@ -6,12 +6,24 @@
 }
 
 input,
-textarea{
+textarea,
+label{
   border: none;
   font-size: 1.1rem;
   border-radius: 4px;
   padding: 4px;
 
+  /* for text area */
   resize:vertical;
   font-family:inherit;
+}
+
+label{
+  background-color: #fff;
+  color: hsl(0, 0%, 50%);
+  cursor: pointer;
+}
+
+label > input{
+  display: none;
 }

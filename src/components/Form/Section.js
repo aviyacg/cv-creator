@@ -9,6 +9,7 @@ class Section extends Component {
     super(props);
     this.addable = props.addable ? true : false;
     this.descriptable = props.descriptable ? true : false;
+    this.image = props.image ? true : false;
   }
 
   render() {
@@ -26,6 +27,7 @@ class Section extends Component {
               inputList={inputList}
               changeInfo={changeInfo}
               descriptable={this.descriptable}
+              image={this.image}
               deleteable={this.addable}
               deleteGroup={deleteGroup}
             />)

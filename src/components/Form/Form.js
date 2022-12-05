@@ -44,7 +44,7 @@ class Form extends Component {
     // add empty group for each section at App state
     const { addGroup } = props;
     const personalInputNames = this.personalInputlist.map(input => input.name);
-    personalInputNames.push('description');
+    personalInputNames.push('description', 'image');
     addGroup({ sectionName: 'personal', inputNames: personalInputNames, groupId: '123' });
     this.addExp({ groupId: '456' });
     this.addEdu({ groupId: '789' });
@@ -106,6 +106,7 @@ class Form extends Component {
           sectionState={personal}
           changeInfo={this.changePersonal}
           descriptable={true}
+          image={true}
         />
         <Section
           title="Experience"
