@@ -1,92 +1,124 @@
 import '../styles/App.css';
 import Header from './Header';
-import Form from './Form/Form';
+import { PersonalInput, ExperienceInput, EducationInput } from './Form/Form';
 import Preview from './Preview/Preview';
-import { Component } from 'react';
+import { useState } from 'react';
+import { v4 as newId } from 'uuid';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+function App() {
+  const [personal, setPersonal] = useState({
+    firstName: "",
+    lastName: "",
+    title: "",
+    address: "",
+    phoneNumber: "",
+    email: "",
+    image: "",
+    description: "",
+  });
 
-    this.state = {
-      personal: [],
-      experience: [],
-      education: [],
+  const updatePersonal = ({ name, value }) => {
+    setPersonal({ ...personal, [name]: value });
+  };
+
+  const [experience, setExperience] = useState({
+    [newId()]: {
+      position: "",
+      company: "",
+      city: "",
+      from: "",
+      to: "",
+    },
+  });
+
+  const addExperience = ({ id }) => { 
+    if (experience[id]) return;
+    const newExp = {
+      position: "",
+      company: "",
+      city: "",
+      from: "",
+      to: "",
     };
+    setExperience({ ...experience, [id]: newExp });
+  };
 
-    this.addGroup = this.addGroup.bind(this);
-    this.changeInfo = this.changeInfo.bind(this);
-    this.deleteGroup = this.deleteGroup.bind(this);
-  }
+  const updateExperience = ({ id, name, value }) => {
+    if (!experience[id]) return;
+    setExperience({ ...experience, [id]: { ...experience[id], [name]: value } });
+  };
 
-  addGroup({ sectionName, inputNames, groupId }) {
-    // get section
-    const section = this.state[sectionName];
-    if (section === undefined) return;
-    // look for group
-    const group = section.find(group => group.id === groupId);
-    if (group === undefined) {
-      // create group if doesnt exist
-      const newInfo = {};
-      inputNames.forEach(name => newInfo[name] = '');
-      section.push({
-        id: groupId,
-        info: newInfo,
-      });
-    }
-    this.setState({ [sectionName]: section });
-  }
+  const deleteExperience = ({ id }) => {
+    if (!experience[id]) return;
+    const prevExperience = {...experience};
+    delete prevExperience[id];
+    setExperience({ ...prevExperience });
+  };
+  
+  const [education, setEducation] = useState({
+    [newId()]: {
+      institution: "",
+      city: "",
+      degree: "",
+      subject: "",
+      from: "",
+      to: "",
+    },
+  });
 
-  changeInfo({ sectionName, groupId, name, value }) {
-    // get section
-    const section = this.state[sectionName];
-    if (section === undefined) return;
-    // get group
-    const group = section.find(group => group.id === groupId);
-    if (group === undefined) {
-      // create group if doesnt exist
-      section.push({
-        id: groupId,
-        info: {[name]: value},
-      });
-    }
-    else {
-      // update if group exist
-      group.info[name] = value;
-    }
-    // update state 
-    this.setState({ [sectionName]: section });
-  }
+  const addEducation = ({ id }) => { 
+    if (education[id]) return;
+    const newEdu = {
+      institution: "",
+      city: "",
+      degree: "",
+      subject: "",
+      from: "",
+      to: "",
+    };
+    setEducation({ ...education, [id]: newEdu });
+  };
 
-  deleteGroup({ sectionName, groupId }) {
-    // get section
-    const section = this.state[sectionName];
-    if (section === undefined) return;
-    // get group
-    const groupIndex = section.findIndex(group => group.id === groupId);
-    if (groupIndex === -1) return;
-    // delete group
-    section.splice(groupIndex, 1);
-    // update state
-    this.setState({ [sectionName]: section });
-  }
+  const updateEducation = ({ id, name, value }) => {
+    if (!education[id]) return;
+    setEducation({ ...education, [id]: { ...education[id], [name]: value } });
+  };
 
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <Form
-          state={this.state}
-          addGroup={this.addGroup}
-          changeInfo={this.changeInfo}
-          deleteGroup={this.deleteGroup}
+  const deleteEducation = ({ id }) => {
+    if (!education[id]) return;
+    const prevEducation = {...education};
+    delete prevEducation[id];
+    setEducation({ ...prevEducation });
+  };
+
+  return (
+    <div className='App'>
+      <Header />
+      <div className='Form'>
+        <PersonalInput
+          personal={personal}
+          updatePersonal={updatePersonal}
         />
-        <Preview
-          state={this.state}
+        <ExperienceInput
+          experience={experience}
+          addExperience={addExperience}
+          updateExperience={updateExperience}
+          deleteExperience={deleteExperience}
+        />
+        <EducationInput
+          education={education}
+          addEducation={addEducation}
+          updateEducation={updateEducation}
+          deleteEducation={deleteEducation}
         />
       </div>
-    );
-  }
+      <Preview
+        personal={personal}
+        experience={experience}
+        education={education}
+      />
+    </div>
+  );
 }
 
 export default App;

@@ -1,14 +1,12 @@
-import { Component } from "react";
 import Main from "./Main";
 import Details from "./Details";
 
 import '../../styles/Preview.css';
 
-class Preview extends Component {
-  render() {
-    const { personal, experience, education } = this.props.state;
-    const fullName = personal[0].info.firstName + ' ' + personal[0].info.lastName;
-    const description = personal[0].info.description;
+function Preview(props) {
+    const { personal, experience, education } = props;
+    const fullName = personal.firstName + ' ' + personal.lastName;
+    const description = personal.description;
     return (
       <div className="Preview">
         <div className="Header">
@@ -24,7 +22,6 @@ class Preview extends Component {
         />
       </div>
     );
-  }
 }
 
 export default Preview;

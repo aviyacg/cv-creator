@@ -1,134 +1,116 @@
-import { Component } from "react";
-import Section from "./Section";
+import { v4 as newId } from "uuid";
 
 import "../../styles/Form.css";
+import "../../styles/Section.css";
+import "../../styles/InputGroup.css";
 
+function PersonalInput(props) {
+  const { updatePersonal } = props;
+  const update = (event) => {
+    const { name, value } = event.target;
+    updatePersonal({ name, value });
+  };
 
-class Form extends Component {
-  constructor(props) {
-    super(props);
-
-    // input lists for rendering each section input groups
-    this.personalInputlist = [
-      { placeHolder: "First name", name: "firstName" },
-      { placeHolder: "Last name", name: "lastName" },
-      { placeHolder: "Address", name: "address" },
-      { placeHolder: "Phone number", name: "phoneNumber", type: "tel" },
-      { placeHolder: "Email", name: "email", type: "email" },
-    ];
-    this.expInputList = [
-      { placeHolder: "Position", name: "position" },
-      { placeHolder: "Company", name: "company" },
-      { placeHolder: "City", name: "city" },
-      { placeHolder: "From year", name: "fromYear", type: "number" },
-      { placeHolder: "Until year", name: "untilYear", type: "number" },
-    ];
-    this.eduInputList = [
-      { placeHolder: "Institution", name: "institution" },
-      { placeHolder: "City", name: "city" },
-      { placeHolder: "Degree", name: "degree" },
-      { placeHolder: "Subject", name: "subject" },
-      { placeHolder: "From year", name: "fromYear", type: "number" },
-      { placeHolder: "Until year", name: "untilYear", type: "number" }
-    ];
-
-    // methods binding
-    this.addExp = this.addExp.bind(this);
-    this.addEdu = this.addEdu.bind(this);
-    this.changePersonal = this.changePersonal.bind(this);
-    this.changeExp = this.changeExp.bind(this);
-    this.changeEdu = this.changeEdu.bind(this);
-    this.deleteExp = this.deleteExp.bind(this);
-    this.deleteEdu = this.deleteEdu.bind(this);
-    
-    // add empty group for each section at App state
-    const { addGroup } = props;
-    const personalInputNames = this.personalInputlist.map(input => input.name);
-    personalInputNames.push('description', 'image');
-    addGroup({ sectionName: 'personal', inputNames: personalInputNames, groupId: '123' });
-    this.addExp({ groupId: '456' });
-    this.addEdu({ groupId: '789' });
-  }
-
-  changePersonal({ groupId, name, value }) {
-    const { changeInfo } = this.props;
-    const sectionName = 'personal';
-    changeInfo({ sectionName, groupId, name, value });
-  }
-
-  addExp({ groupId }) {
-    const { addGroup } = this.props;
-    const sectionName = 'experience';
-    const inputNames = this.expInputList.map(input => input.name);
-    addGroup({ sectionName, inputNames, groupId });
-  }
-
-  changeExp({ groupId, name, value }) {
-    const { changeInfo } = this.props;
-    const sectionName = 'experience';
-    changeInfo({ sectionName, groupId, name, value });
-  }
-
-  deleteExp({ groupId }) {
-    const { deleteGroup } = this.props;
-    const sectionName = 'experience';
-    deleteGroup({ sectionName, groupId });
-  }
-
-  addEdu({ groupId }) {
-    const { addGroup } = this.props;
-    const sectionName = 'education';
-    const inputNames = this.eduInputList.map(input => input.name);
-    addGroup({sectionName, inputNames, groupId});
-  }
-
-  changeEdu({ groupId, name, value }) {
-    const { changeInfo } = this.props;
-    const sectionName = 'education';
-    changeInfo({ sectionName, groupId, name, value });
-  }
+  const getImage = (event) => { 
+    const { name } = event.target;
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      updatePersonal({ name, value: reader.result })
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      updatePersonal({ name, value: "" });
+    }
+  };
   
-  deleteEdu({ groupId }) {
-    const { deleteGroup } = this.props;
-    const sectionName = 'education';
-    deleteGroup({ sectionName, groupId });
-  }
-
-
-  render() {
-    // sectionStates for rendering input groups values
-    const { personal, experience, education } = this.props.state;
-    return (
-      <div className="Form">
-        <Section
-          title="Personal Info"
-          inputList={this.personalInputlist}
-          sectionState={personal}
-          changeInfo={this.changePersonal}
-          descriptable={true}
-          image={true}
-        />
-        <Section
-          title="Experience"
-          inputList={this.expInputList}
-          sectionState={experience}
-          addable={true}
-          addGroup={this.addExp}
-          changeInfo={this.changeExp}
-          deleteGroup={this.deleteExp}
-        />
-        <Section
-          title="Education"
-          inputList={this.eduInputList}
-          sectionState={education}
-          addable={true}
-          addGroup={this.addEdu}
-          changeInfo={this.changeEdu}
-          deleteGroup={this.deleteEdu}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="Section">
+      <div className="title">Personal Information</div>
+      <input name="firstName" placeholder="First name" onChange={update}/>
+      <input name="lastName" placeholder="Last name" onChange={update}/>
+      <input name="title" placeholder="Title" onChange={update}/>
+      <input name="address" placeholder="Address" onChange={update}/>
+      <input name="phoneNumber" placeholder="Phone number" onChange={update}/>
+      <input name="email" placeholder="Email" onChange={update} />
+      <label>Choose Photo<input name="image" type="file" onChange={getImage} /></label>
+      <textarea name="description" placeholder="description" onInput={update}/>
+    </div>
+  );
 }
 
-export default Form;
+function ExperienceInput(props) {
+  const { experience, addExperience,updateExperience, deleteExperience } = props;
+
+  const addExp = () => {
+    const id = newId();
+    addExperience({id});
+  };
+
+  const update = (event) => {
+    const { name, value } = event.target;
+    updateExperience({ name, value });
+  };
+
+  const deleteExp = (event) => {
+    const { id } = event.target;
+    deleteExperience({ id })
+  };
+
+  return (
+    <div className="Section">
+      <div className="title">Experience</div>
+      {
+        Object.keys(experience).map((id) => (
+          <div key={id} className="Section">
+            <input id={id} name="position" placeholder="Position" onChange={update} />
+            <input id={id} name="company" placeholder="Company" onChange={update}/>
+            <input id={id} name="city" placeholder="City" onChange={update}/>
+            <input id={id} name="from" placeholder="From" onChange={update}/>
+            <input id={id} name="to" placeholder="To" onChange={update} />
+            <button id={id} onClick={deleteExp}>Delete</button>
+          </div>))}
+      <button onClick={addExp}>Add</button>
+    </div>
+  );
+}
+
+function EducationInput(props) {
+  const { education, addEducation,updateEducation, deleteEducation } = props;
+
+  const addEdu = () => {
+    const id = newId();
+    addEducation({id});
+  };
+
+  const update = (event) => {
+    const { name, value } = event.target;
+    updateEducation({ name, value });
+  };
+
+  const deleteEdu = (event) => {
+    const { id } = event.target;
+    deleteEducation({ id })
+  };
+
+  return (
+    <div className="Section">
+      <div className="title">Education</div>
+      {
+        Object.keys(education).map((id) => (
+          <div key={id} className="Section">
+            <input id={id} name="institution" placeholder="Institution" onChange={update} />
+            <input id={id} name="city" placeholder="City" onChange={update}/>
+            <input id={id} name="degree" placeholder="Degree" onChange={update}/>
+            <input id={id} name="subject" placeholder="Subject" onChange={update}/>
+            <input id={id} name="from" placeholder="From" onChange={update}/>
+            <input id={id} name="to" placeholder="To" onChange={update} />
+            <button id={id} onClick={deleteEdu}>Delete</button>
+          </div>))}
+      <button onClick={addEdu}>Add</button>
+    </div>
+  );
+}
+
+export { PersonalInput, ExperienceInput, EducationInput };
